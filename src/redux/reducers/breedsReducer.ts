@@ -17,6 +17,8 @@ export const breedsSlice = createSlice({
     reducers: {
         initBreeds: (state, action) => {
             state.breedsList = action.payload
+            const firstValue = Object.keys(action.payload)[0]
+            state.selectedBreed.breed = firstValue
         },
         selectBreed: (state, action) => {
             state.selectedBreed = {

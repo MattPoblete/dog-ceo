@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { selectBreed, selectSubBreed } from '../../redux/reducers/breedsReducer'
 const BreedsListSelect = () => {
@@ -6,6 +6,7 @@ const BreedsListSelect = () => {
   const selectedBreed = breeds.selectedBreed
   const subBreeds = breeds.selectedBreed.subBreed
   const dispatch = useDispatch()
+
   const handleChange = (event: any)=> {
     const targetBreed = event.target.value
     const newSelectedBreed = {
@@ -21,7 +22,7 @@ const BreedsListSelect = () => {
 
   useEffect(()=>{
     
-  },[selectedBreed])
+  },[])
   return (
     <div>
       <h1>Breeds:</h1>
