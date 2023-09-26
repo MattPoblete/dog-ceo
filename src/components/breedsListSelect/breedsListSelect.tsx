@@ -1,42 +1,39 @@
-import { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { selectBreed, selectSubBreed } from '../../redux/reducers/breedsReducer'
+
+import { Select } from 'antd'
 const BreedsListSelect = () => {
   const breeds = useSelector((state: any)=>state.breeds)
   const selectedBreed = breeds.selectedBreed
   const subBreeds = breeds.selectedBreed.subBreed
   const dispatch = useDispatch()
 
-  const handleChange = (event: any)=> {
-    const targetBreed = event.target.value
+  const handleChange = (breed: any)=> {
+    const targetBreed = breed.title
     const newSelectedBreed = {
       breed: targetBreed,
       subBreed: breeds.breedsList[targetBreed]
     }
     dispatch(selectBreed(newSelectedBreed))
   }
-  const handleSubBreedChange = (event: any) => {
-    const subBreed = event.target.value
-    dispatch(selectSubBreed(subBreed))
+
+  const handleSubBreedChange = (SubBreed: any) => {
+    dispatch(selectSubBreed(SubBreed.title))
   }
 
-  useEffect(()=>{
-    
-  },[])
   return (
     <div>
-      <h1>Breeds:</h1>
-      <select value={selectedBreed.breed} onChange={handleChange}>
+      <Select value={selectedBreed.breed}  onClick={(event)=> handleChange(event?.target)}>
         {Object.keys(breeds.breedsList).map((breed, i) => (
-          <option key={i}>{breed}</option>
+          <Select.OptGroup key={i} label={breed}/>
         ))}
-      </select>
+      </Select>
       {subBreeds.length > 0 &&
-      <select value={selectedBreed.selectedSubBreed} onChange={handleSubBreedChange}>
+      <Select value={selectedBreed.selectedSubBreed} onClick={(event)=> handleSubBreedChange(event.target)}>
         {selectedBreed.subBreed.map((subBreed: string, key: number)=> (
-          <option key={key}>{subBreed}</option>
+          <Select.OptGroup  key={key} label={subBreed}/>
         ))}
-      </select>
+      </Select>
       }
     </div>
   )

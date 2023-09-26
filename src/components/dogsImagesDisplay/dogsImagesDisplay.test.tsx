@@ -3,7 +3,6 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import  configureStore from 'redux-mock-store'
 
-import { fetchData } from "../../services";
 import DogsImagesDisplay from "./dogsImagesDisplay";
 
 
@@ -19,6 +18,7 @@ describe('<DogsImagesDisplay/>', ()=> {
         }
     }
     const store = mockStore(initialState)
+    global.fetch = () => Promise.resolve({status: 200, json: ()=> Promise.resolve({status:'success', message:{}})})
     render(
         <Provider store={store}>
             <DogsImagesDisplay/>
@@ -30,8 +30,4 @@ describe('<DogsImagesDisplay/>', ()=> {
         expect(imgContainers.length).toBe(currentFilters.length)
     })
 
-    it('should add a custom url to the image', async ()=>{
-        const imgContainers = await screen.findAllByAltText('dog-image')
-
-    })
 })

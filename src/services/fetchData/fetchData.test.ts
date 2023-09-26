@@ -9,8 +9,8 @@ describe('fetchData', ()=>{
     })
 
     it('should throw if url was not provided', async ()=> {
-        const promise = fetchData()
-        expect(promise).rejects.toThrow() // eslint-disable-line
+        const promise = fetchData() // eslint-disable-line
+        expect(promise).rejects.toThrow() 
     })
 
     it('should connect to the api and return the response object', async () => {

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import  configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
@@ -22,7 +22,7 @@ describe('<BreedsListSelect/>', () => {
             },
             selectedBreed: {
                 breed: "australian",
-                subBreed: ['shepherd']
+                subBreed: ['shepherd', 'boston']
             },
             error: null
         }
@@ -34,16 +34,17 @@ describe('<BreedsListSelect/>', () => {
         </Provider>
     )
 
-    it('should render the title', ()=>{
+ /*    it('should render the title', ()=>{
         screen.getByText(/Breeds:/i)
-    })
+    }) */
 
     it('should create a selector with the provided breeds', ()=>{
-        screen.getByText('bulldog')
         screen.getByText('australian')
     })
    
     it('should render a new selector if the selected breed has one or more sub-breeds', ()=>{
-        screen.getByText('shepherd')
+        const selects = screen.getAllByLabelText('Search')
+        expect(selects.length).toBe(2)
+
     })
 })

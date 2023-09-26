@@ -22,13 +22,13 @@ describe('<FiltersList/>', ()=>{
         </Provider>
         )
     it('should display every filter on the array', ()=> {
-        screen.getByText('african/')
-        screen.getByText('appenzeller/')
-        screen.getByText('bulldog/french')
+        screen.getByText('african')
+        screen.getByText('appenzeller')
+        screen.getByText('bulldog')
     })
 
     it('should display a delete button for each filter', ()=>{
-        const deleteButtons = screen.getAllByText('delete')
+        const deleteButtons = screen.getAllByLabelText('delete')
         expect(deleteButtons.length).toBe(3)
     })
 })

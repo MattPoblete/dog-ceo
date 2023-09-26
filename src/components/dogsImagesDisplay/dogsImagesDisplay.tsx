@@ -1,28 +1,21 @@
-import {  useDispatch, useSelector } from "react-redux"
-import { fetchData } from "../../services"
-import getImageUrl from "../../services/getImageUrl/getImgaeUrl"
-import { useEffect } from "react"
-import { addImage } from "../../redux/reducers/filtersReducer"
-
+import {  useSelector } from "react-redux"
+import { Card, Row, Col } from "antd"
 
 function DogsImagesDisplay() {
     const filters = useSelector((state: any)=>state.filters.currentFilters)
-    const dispatch = useDispatch()
+    const { Meta } = Card;
 
-    useEffect(()=>{
-        filters.forEach((element, index) => {
-            fetchData(getImageUrl(element.breed, element.subBreed))
-            .then(res=>res.message)
-            .then(data=>dispatch(addImage({src: data[0], index})))
-            
-        });
-    },[])
     return (
-        <div>
-            {filters.map((filter,index)=>(
-                <img key={index} alt="dog-image" src={filter.src}/>
+        <Row gutter={{sm:16, md: 21}}>
+            {filters.map((filter :any, index: number)=>(
+            <Col>
+                <Card key={index} hoverable style={{ width: 240 }} cover={<img key={index} alt="dog-image" src={filter.src}/>}>
+                    <Meta title={filter.breed}/>
+                </Card>
+            </Col>
+
             ))}
-        </div>
+        </Row>
     )
 }
 
