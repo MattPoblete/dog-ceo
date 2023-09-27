@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { filter } from "../../constants";
 
 const initialState = {
-    currentFilters: []
+    currentFilters: [] as Array<Object>
 }
 
 export const filtersSlice = createSlice({
@@ -9,16 +10,22 @@ export const filtersSlice = createSlice({
     initialState,
     reducers: {
         addFilter: (state, action) => {
-            const alreadyExists = state.currentFilters.some((element)=> element.breed == action.payload.breed && element.subBreed == action.payload.subBreed)
+            const alreadyExists = state.currentFilters.some(
+                (element: any)=> 
+                    element.breed == action.payload.breed && 
+                    element.subBreed == action.payload.subBreed
+                )
             if(!alreadyExists){
-                state.currentFilters.push(action.payload)
+                const filter = action.payload as filter
+                state.currentFilters.push(filter)
             }
         },
         removeFilter: (state, action) => {
             state.currentFilters.splice(action.payload, 1)
         },
         addImage: (state, action) =>{
-            state.currentFilters[action.payload.index].src = action.payload.src
+            const currentFilter = state.currentFilters[action.payload.index] as filter
+            currentFilter.src = action.payload.src
         }
     }
 })

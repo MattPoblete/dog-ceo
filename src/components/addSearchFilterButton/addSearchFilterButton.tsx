@@ -11,7 +11,7 @@ const AddSearchFilterButton = () => {
     const dispatch = useDispatch()
     const createWithSrc = (dog: any)=>{
         fetchData(getImageUrl(dog.breed, dog.subBreed))
-        .then(res=>res.message)
+        .then((res: any)=>res.message)
         .then(data=>dispatch(addFilter({breed: selectedBreed.breed, src: data, subBreed: selectedBreed.selectedSubBreed })))
       }
 

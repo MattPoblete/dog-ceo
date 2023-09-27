@@ -24,14 +24,14 @@ const BreedsListSelect = () => {
   return (
     <div>
       <Select value={selectedBreed.breed}  onClick={(event)=> handleChange(event?.target)}>
-        {Object.keys(breeds.breedsList).map((breed, i) => (
-          <Select.OptGroup key={i} label={breed}/>
+        {Object.keys(breeds.breedsList).map((breed: string, index:number) => (
+          <Select.OptGroup key={index} label={breed}/>
         ))}
       </Select>
       {subBreeds.length > 0 &&
       <Select value={selectedBreed.selectedSubBreed} onClick={(event)=> handleSubBreedChange(event.target)}>
-        {selectedBreed.subBreed.map((subBreed: string, key: number)=> (
-          <Select.OptGroup  key={key} label={subBreed}/>
+        {selectedBreed.subBreed.map((subBreed: string, index: number)=> (
+          <Select.OptGroup  key={index} label={subBreed}/>
         ))}
       </Select>
       }
