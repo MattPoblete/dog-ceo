@@ -2,6 +2,12 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  max-width: 100vw !important;
+  width: 100vw !important;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -12,6 +18,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  background: linear-gradient(74deg,#4f7d80,#707f71,#ad9d96,#734646,#241e26);
+  background-size: 300% 300%;
+  animation: gradient-animation 45s ease infinite;
+}
+
+
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 a {
@@ -26,9 +49,8 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {

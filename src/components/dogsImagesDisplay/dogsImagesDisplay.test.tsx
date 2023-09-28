@@ -5,7 +5,13 @@ import  configureStore from 'redux-mock-store'
 
 import DogsImagesDisplay from "./dogsImagesDisplay";
 
-
+window.matchMedia = window.matchMedia || function () {
+    return {
+        matches: false,
+        addListener: function() {},
+        removeListener: function() {},
+    }
+}
 const mockStore = configureStore([])
 describe('<DogsImagesDisplay/>', ()=> {
     let initialState = {

@@ -1,0 +1,12 @@
+.filter {
+    box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.52);
+    background-color: rgb(243, 85, 85);
+    color: rgb(243, 243, 243)!important;
+}
+
+.filter:hover {
+    background-color: rgb(218, 96, 96);
+}
+.filter:active {
+    background-color: rgb(148, 64, 64);
+}

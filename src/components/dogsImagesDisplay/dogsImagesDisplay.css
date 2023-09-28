@@ -1,0 +1,14 @@
+.image_container {
+    padding: 16px;
+}
+.image_container__col{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dog_image {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.52);
+}

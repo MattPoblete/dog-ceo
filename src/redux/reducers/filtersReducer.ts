@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { filter } from "../../constants";
 
 const initialState = {
-    currentFilters: [] as Array<Object>
+    currentFilters: [] as Array<Object>,
+    isLoading: true,
 }
 
 export const filtersSlice = createSlice({
@@ -26,9 +27,12 @@ export const filtersSlice = createSlice({
         addImage: (state, action) =>{
             const currentFilter = state.currentFilters[action.payload.index] as filter
             currentFilter.src = action.payload.src
-        }
+        },
+        setLoading: (state, action) =>{
+            state.isLoading = action.payload
+        },
     }
 })
 
-export const { addFilter, removeFilter, addImage } = filtersSlice.actions
+export const { addFilter, removeFilter, addImage, setLoading } = filtersSlice.actions
 export default filtersSlice.reducer

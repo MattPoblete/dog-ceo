@@ -1,20 +1,17 @@
 import {  useSelector } from "react-redux"
-import { Card, Row, Col } from "antd"
+import { Row, Col, Image } from "antd"
 import { filter } from "../../constants";
+import './dogsImagesDisplay.css'
 
 function DogsImagesDisplay() {
     const filters = useSelector((state: any)=>state.filters.currentFilters)
-    const { Meta } = Card;
 
     return (
-        <Row gutter={{sm:16, md: 21}}>
+        <Row className='image_container' gutter={[16,16]} justify={'center'}>
             {filters.map((filter: filter, index: number)=>(
-            <Col>
-                <Card key={index} hoverable style={{ width: 240 }} cover={<img key={index} alt="dog-image" src={filter.src}/>}>
-                    <Meta title={filter.breed}/>
-                </Card>
+            <Col className='image_container__col' xs={24} md={12} lg={6} key={index}>
+                <Image alt="dog-image" className="dog_image" key={index} src={filter.src}/>
             </Col>
-
             ))}
         </Row>
     )

@@ -5,6 +5,13 @@ import { Provider } from 'react-redux'
 import BreedsListSelect from './breedsListSelect.tsx'
 
 const mockStore = configureStore([])
+window.matchMedia = window.matchMedia || function () {
+    return {
+        matches: false,
+        addListener: function() {},
+        removeListener: function() {},
+    }
+}
 describe('<BreedsListSelect/>', () => {
     const initialState = {
         breeds: {

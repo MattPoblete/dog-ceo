@@ -1,30 +1,32 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect } from 'react';
+import { Space } from 'antd';
+
 
 import './App.css'
 import {fetchData} from './services';
-import { baseURL, breedsURL, initBreedsListResponse } from './constants';
-import { initBreeds, selectBreed } from './redux/reducers/breedsReducer';
-import BreedsListSelect from './components/breedsListSelect/breedsListSelect';
-import AddSearchFilterButton from './components/addSearchFilterButton/addSearchFilterButton';
-import FiltersList from './components/filtersList/filtersList';
+import { baseURL, breedsURL, apiResponse } from './constants';
+import { initBreeds } from './redux/reducers/breedsReducer';
 import DogsImagesDisplay from './components/dogsImagesDisplay/dogsImagesDisplay';
+import SearchInput from './components/searchInput/searchInput';
+import FiltersDisplay from './components/filtersDisplay/filtersDisplay';
+import { setLoading } from './redux/reducers/filtersReducer';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(()=>{
     fetchData(baseURL+breedsURL).then((data)=>{
-      const breedsData = data as initBreedsListResponse
+      const breedsData = data as apiResponse
       dispatch(initBreeds(breedsData.message))
+      dispatch(setLoading(false))
     })
   }, [])
   return (
-    <div className='App'>
-      <BreedsListSelect/>
-      <AddSearchFilterButton/>
-      <FiltersList/>
-      <DogsImagesDisplay/>
-    </div>
+      <Space direction='vertical' className='main_container'>
+          <SearchInput/>
+          <FiltersDisplay/>
+          <DogsImagesDisplay/>
+      </Space>
   )
 }
 

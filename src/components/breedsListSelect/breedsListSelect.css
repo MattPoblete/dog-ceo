@@ -1,0 +1,26 @@
+.list_select {
+    width: 100%;
+}
+
+.ant-select-selector {
+    background-color: rgba(221, 221, 221, 0.637) !important;
+}
+.ant-select-disabled {
+    background-color: rgba(0, 0, 0, 0.616) !important;
+    border-radius: 10px;
+}
+
+.ant-select-dropdown {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(10px);
+}
+
+.ant-select-item {
+    color: rgb(26, 26, 26) !important;
+    
+}
+.ant-select-item:hover {
+    background-color: rgb(235, 235, 235) !important;
+    border-radius: 8px;
+    
+}

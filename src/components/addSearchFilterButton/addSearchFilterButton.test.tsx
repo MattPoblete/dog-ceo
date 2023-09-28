@@ -8,8 +8,10 @@ const mockStore = configureStore([])
 
 describe('<AddSearchFilterButton />', ()=>{
     const initialState = {
+        filters:{
+            isLoading: true,
+        },
         breeds: {
-            isLoading: false,
             breedsList: {
                 "australian": [
                     "shepherd"
@@ -36,6 +38,6 @@ describe('<AddSearchFilterButton />', ()=>{
         </Provider>
         )
     it('should render an add filter button',()=>{
-        screen.getByText('Add filter')
+        screen.getByLabelText(/add/i)
     })
 })
